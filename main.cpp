@@ -15,12 +15,28 @@ int main(int argc, char *argv[])
 	list<list<int> *> outer_list; //This is a list of pointers to lists of integers.
 
 	/*
-	while(next line != empty) {
+	while(rest of input file != empty) {
 
-	 listptrx = new list<int>* ;
-	 *listptrx.at(x) = first list value
-	 outerlist.push_back(listptrx);
+	 listptr = new list<int> ;
+	 
+		 while(rest of line is not empty) 
+		 {
+		 (*listptr).at(x) = first list value
+		 x++;
+		 move to next value;
+		 }
+	 
+	 outerlist.push_back(listptr);
 
+	}
+	
+	
+	--Print Checks and sums
+	
+	
+	for (&outer_list : listbeingdeleted) 
+	{
+	delete listbeingdeleted;
 	}
 
 
