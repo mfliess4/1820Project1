@@ -12,9 +12,21 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	cout << "Hello, world." << endl;
+	list<list<int> *> outer_list; //This is a list of pointers to lists of integers.
+
+	/*
+	while(next line != empty) {
+
+	 listptrx = new list<int>* ;
+	 *listptrx.at(x) = first list value
+	 outerlist.push_back(listptrx);
+
+	}
 
 
+
+
+	*/
 
 	// This causes the program to pause at its completion.
 	{
@@ -24,3 +36,6 @@ int main(int argc, char *argv[])
 	}
 	return 0;
 }
+
+//Problems - inputting filename from outside main and assinging it to argv[0], assiging different ints from file to different list spots and different lists,
+//
