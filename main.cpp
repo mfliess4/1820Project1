@@ -7,6 +7,7 @@
 #include <iostream>
 #include <list>
 #include <fstream>
+#include <ctype.h>
 
 using namespace std;
 
@@ -14,35 +15,94 @@ int main(int argc, char *argv[])
 {
 	list<list<int> *> outer_list; //This is a list of pointers to lists of integers.
 
-	/*
-	while(rest of input file != empty) {
+	cout << "This is argc: " << argc << endl;
+	cout << "This is argv[1] :  ";
 
-	 listptr = new list<int> ;
-	 
-		 while(rest of line is not empty) 
-		 {
-		 (*listptr).at(x) = first list value
-		 x++;
-		 move to next value;
-		 }
-	 
-	 outerlist.push_back(listptr);
+	char *tester = nullptr;
+	tester = argv[1];
+	//cout << "tester is: " << tester << endl;
 
-	}
-	
-	
-	--Print Checks and sums
-	
-	
-	for (&outer_list : listbeingdeleted) 
+	if (tester == nullptr)
 	{
-	delete listbeingdeleted;
+		cout << "Must provide name of input file." << endl;
 	}
 
+	cout << argv[1] << endl;
 
+	// ^ Working
 
+	cout << "end" << endl;
 
-	*/
+	ifstream instream;
+
+	string filename;
+	char checker = 'a';
+	list<int> *listptr = nullptr;
+	int index = 0;
+	int entrynum = 0;
+	//bool breakval = 0;
+	int listcounter = 0;
+
+	cout << "enter filename: " << endl;
+	getline(cin, filename);
+
+	instream.open(filename);
+
+	if (!instream.is_open())
+	{
+		cout << "Could not open " << filename << endl;
+		return 1;
+	}
+	else if (instream.is_open())
+	{
+		cout << filename << " opened successfully. " << endl;
+	}
+
+	// ^ Working
+
+	while (checker != EOF) //Check vimeo for parsing
+	{
+		listptr = new list<int>;
+		cout << "list created" << endl;
+		listcounter++;
+
+		while (checker != '\n')
+		{
+			cin >> entrynum;
+			(*listptr).push_back(entrynum);
+			index++;
+			checker = instream.peek();
+			if (checker == '\n')
+			{
+				break;
+			}
+		}
+
+		outer_list.push_back(listptr);
+		checker = instream.peek();
+	}
+
+	cout << outer_list.size();
+
+	//Print Checks and sums
+
+	unsigned int outputindex = 0;
+	list<int> outlist;
+	cout << "List counter: " << listcounter << endl;
+	cout << "Size of outer list: " << outer_list.size() << endl;
+
+	while (outputindex < outer_list.size())
+	{
+
+		outputindex++;
+	}
+
+	//deallocates memory
+
+	for (list<int> *listdelptr : outer_list)
+	{
+		delete listdelptr;
+	}
 
 	// This causes the program to pause at its completion.
 	{
