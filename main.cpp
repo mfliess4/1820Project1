@@ -15,19 +15,19 @@ int main(int argc, char *argv[])
 {
 	list<list<int> *> outer_list; //This is a list of pointers to lists of integers.
 
-	cout << "This is argc: " << argc << endl;
-	cout << "This is argv[1] :  ";
+	//cout << "This is argc: " << argc << endl;
+	//cout << "This is argv[1] :  ";
 
 	char *tester = nullptr;
 	tester = argv[1];
 	//cout << "tester is: " << tester << endl;
 
-	if (tester == nullptr)
+	/*if (tester == nullptr)
 	{
 		cout << "Must provide name of input file." << endl;
-	}
+	}*/
 
-	cout << argv[1] << endl;
+	//cout << argv[1] << endl;
 
 	// ^ Working
 
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
 	// ^ Working
 
-	while (checker != EOF) //Check vimeo for parsing
+	while (!instream.eof()) //Check vimeo for parsing
 	{
 		listptr = new list<int>;
 		cout << "list created" << endl;
@@ -68,18 +68,23 @@ int main(int argc, char *argv[])
 
 		while (checker != '\n')
 		{
-			cin >> entrynum;
+			instream >> entrynum;
 			(*listptr).push_back(entrynum);
 			index++;
 			checker = instream.peek();
-			if (checker == '\n')
+			if (checker == '\n' || checker == -1)
 			{
 				break;
 			}
 		}
 
 		outer_list.push_back(listptr);
-		checker = instream.peek();
+		//checker = instream.peek();
+		checker = 'a';
+		if (instream.eof())
+		{
+			break;
+		}
 	}
 
 	cout << outer_list.size();
