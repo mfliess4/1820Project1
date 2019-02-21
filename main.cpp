@@ -8,6 +8,7 @@
 #include <list>
 #include <fstream>
 #include <ctype.h>
+#include <vector>
 
 using namespace std;
 
@@ -20,18 +21,16 @@ int main(int argc, char *argv[])
 
 	char *tester = nullptr;
 	tester = argv[1];
-	//cout << "tester is: " << tester << endl;
 
-	/*if (tester == nullptr)
+	if (argc < 2)
 	{
 		cout << "Must provide name of input file." << endl;
-	}*/
+		return 1;
+	}
 
 	//cout << argv[1] << endl;
 
 	// ^ Working
-
-	cout << "end" << endl;
 
 	ifstream instream;
 
@@ -42,35 +41,38 @@ int main(int argc, char *argv[])
 	int entrynum = 0;
 	//bool breakval = 0;
 	int listcounter = 0;
+	int listSum = 0;
+	int elementCtr = 0;
 
-	cout << "enter filename: " << endl;
-	getline(cin, filename);
+	vector<int> listSizes;
+	vector<int> listSums;
 
-	instream.open(filename);
+	instream.open(tester);
 
 	if (!instream.is_open())
 	{
-		cout << "Could not open " << filename << endl;
+		cout << "Unable to open " << tester << endl;
 		return 1;
 	}
 	else if (instream.is_open())
 	{
-		cout << filename << " opened successfully. " << endl;
+		//cout << filename << " opened successfully. " << endl;
 	}
 
 	// ^ Working
 
-	while (!instream.eof()) //Check vimeo for parsing
+	while (!instream.eof())
 	{
 		listptr = new list<int>;
-		cout << "list created" << endl;
+		//cout << "list created" << endl;
 		listcounter++;
 
 		while (checker != '\n')
 		{
 			instream >> entrynum;
 			(*listptr).push_back(entrynum);
-			index++;
+			listSum = listSum + entrynum;
+			elementCtr++;
 			checker = instream.peek();
 			if (checker == '\n' || checker == -1)
 			{
@@ -79,6 +81,11 @@ int main(int argc, char *argv[])
 		}
 
 		outer_list.push_back(listptr);
+		listSums.push_back(listSum);
+		listSizes.push_back(elementCtr);
+		index++;
+		listSum = 0;
+		elementCtr = 0;
 		//checker = instream.peek();
 		checker = 'a';
 		if (instream.eof())
@@ -87,8 +94,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	cout << outer_list.size();
-
 	//Print Checks and sums
 
 	unsigned int outputindex = 0;
@@ -96,9 +101,9 @@ int main(int argc, char *argv[])
 	cout << "List counter: " << listcounter << endl;
 	cout << "Size of outer list: " << outer_list.size() << endl;
 
-	while (outputindex < outer_list.size())
+	while (outputindex < listSizes.size())
 	{
-
+		cout << "List " << (outputindex + 1) << " has " << listSizes.at(outputindex) << " elements and sums to " << listSums.at(outputindex) << endl;
 		outputindex++;
 	}
 
@@ -117,6 +122,3 @@ int main(int argc, char *argv[])
 	}
 	return 0;
 }
-
-//Problems - inputting filename from outside main and assinging it to argv[0], assiging different ints from file to different list spots and different lists,
-//
