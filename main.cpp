@@ -1,7 +1,7 @@
-/*	Project:    NAME OF PROJECT GOES HERE
-	Name:       YOUR NAME GOES HERE
+/*	Project:    Pointers
+	Name:       Michael Fliess
     Partner:    PARTNER'S NAME IF ANY
-    Class:      example: CSC 1810 - Section 1
+    Class:      CSC 1820 - MF Section
 */
 
 #include <iostream>
